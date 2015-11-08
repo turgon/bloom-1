@@ -321,3 +321,11 @@ func BenchmarkCombinedTestAndAdd(b *testing.B) {
 		f.TestAndAdd(key)
 	}
 }
+
+func BenchmarkBaseHashes(b *testing.B) {
+	data := make([]byte, 1)
+	for i := 0; i < b.N; i++ {
+		data[0] = byte(uint8(i))
+		baseHashes(data)
+	}
+}
