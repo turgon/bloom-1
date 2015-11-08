@@ -329,3 +329,15 @@ func BenchmarkBaseHashes(b *testing.B) {
 		baseHashes(data)
 	}
 }
+
+func BenchmarkFilterLocation(b *testing.B) {
+	f := New(1000, 4)
+	data := make([]byte, 1)
+	for i := 0; i < b.N; i++ {
+		data[0] = byte(uint8(i))
+		h := baseHashes(data)
+		for j := uint(0); j < f.k; j++ {
+			f.location(h, j)
+		}
+	}
+}
